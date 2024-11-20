@@ -2,17 +2,11 @@ package factoria5.santaclaustoyfactory;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit test for simple App.
- */
 class AppTest {
-    /**
-     * Rigorous Test.
-     */
     @Test
-    void testApp() {
-        assertEquals(1, 1);
+    void dummyTest() {
+        assertTrue(true); // Замените на настоящие тесты
     }
 }

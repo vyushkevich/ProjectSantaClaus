@@ -4,26 +4,38 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            ToyRepository toyRepository = new ToyRepository();
-            ToyController toyController = new ToyController(toyRepository);
+        Scanner scanner = new Scanner(System.in);
+        ToyController toyController = new ToyController();
 
-            System.out.println("Iniciar sesión de trabajo como:");
-            System.out.println("1. Elfo");
-            System.out.println("2. Santa Claus");
-            System.out.print("Seleccione una opción: ");
+        System.out.println("Gestor de juguetes (Tipo de sesión: Santa)");
+        System.out.println("1. Añadir juguete");
+        System.out.println("2. Ver todos los juguetes");
+        System.out.println("3. Eliminar un juguete");
+        System.out.println("4. Salir");
+
+        while (true) {
+            System.out.print("Selecciona una opción: ");
             int option = scanner.nextInt();
+            scanner.nextLine(); // Очистка строки ввода
 
-            if (option == 1) {
-                toyController.handleElfActions(scanner); // Передаем объект Scanner
-            } else if (option == 2) {
-                System.out.println("Gestor de juguetes (Tipo de sesión: Santa)");
-                // Логика для действий Санты
-            } else {
-                System.out.println("Opción no válida.");
+            switch (option) {
+                case 1:
+                    toyController.addToy(scanner);
+                    break;
+                case 2:
+                    toyController.viewAllToys();
+                    break;
+                case 3:
+                    toyController.removeToy(scanner);
+                    break;
+                case 4:
+                    System.out.println("¡Feliz Navidad!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opción no válida. Intenta de nuevo.");
+                    break;
             }
-        } catch (Exception e) {
-            System.out.println("Ocurrió un error: " + e.getMessage());
         }
     }
 }
