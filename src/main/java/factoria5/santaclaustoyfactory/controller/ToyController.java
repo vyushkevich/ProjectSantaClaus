@@ -3,101 +3,60 @@ package factoria5.santaclaustoyfactory.controller;
 import factoria5.santaclaustoyfactory.model.Toy;
 import factoria5.santaclaustoyfactory.model.ToyRepository;
 
-import java.util.List;
-import java.util.Scanner;
-
 public class ToyController {
-    private ToyRepository toyRepository;
 
-    // Конструктор
+    private final ToyRepository toyRepository;
+
     public ToyController(ToyRepository toyRepository) {
         this.toyRepository = toyRepository;
     }
 
-    // Добавление игрушки для хороших детей
-    public void addToyForGood() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Ingrese el título: ");
-            String title = scanner.nextLine();
-            System.out.print("Ingrese la marca: ");
-            String brand = scanner.nextLine();
-            System.out.print("Ingrese la edad recomendada: ");
-            int age = Integer.parseInt(scanner.nextLine());
-            System.out.print("Ingrese la categoría: ");
-            String category = scanner.nextLine();
-
-            toyRepository.addToy(new Toy(title, brand, age, category));
-            System.out.println("Juguete añadido con éxito");
+    public void viewToys() {
+        System.out.println("Lista de juguetes:");
+        for (Toy toy : toyRepository.getAllToys()) {
+            System.out.println(toy);
         }
     }
 
-    // Добавление игрушки для плохих детей
-    public void addToyForBad() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Ingrese el título: ");
-            String title = scanner.nextLine();
-            System.out.print("Ingrese el contenido: ");
-            String content = scanner.nextLine();
-
-            toyRepository.addToy(new Toy(title, content, false));
-            System.out.println("Juguete añadido con éxito");
-        }
+    public void addToyForGood(String name, String description, int age) {
+        Toy toy = new Toy(name, description, "Bueno", age);
+        toyRepository.addToy(toy);
+        System.out.println("Juguete añadido para niños buenos: " + toy);
     }
-
-    // Просмотр всех игрушек
-    public List<Toy> getAllToys() {
-        return toyRepository.getAllToys();
+    
+    public void addToyForBad(String name, String description, int age) {
+        Toy toy = new Toy(name, description, "Malo", age);
+        toyRepository.addToy(toy);
+        System.out.println("Juguete añadido para niños malos: " + toy);
     }
+    
+    
 
-    // Удаление игрушки
     public void deleteToy() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Ingrese el identificador del juguete a eliminar: ");
-            String input = scanner.nextLine();
-
-            if (input.isEmpty()) {
-                System.out.println("El identificador no puede estar vacío.");
-                return;
-            }
-
-            try {
-                int toyId = Integer.parseInt(input);
-                if (toyId >= 0 && toyId < toyRepository.getAllToys().size()) {
-                    toyRepository.removeToy(toyId);
-                    System.out.println("Juguete eliminado con éxito.");
-                } else {
-                    System.out.println("ID de juguete no válido.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Por favor, ingrese un número válido.");
-            }
-        }
+        System.out.println("Eliminando juguete...");
+        toyRepository.removeToy();
     }
 
-    // Просмотр игрушек для хороших детей
     public void viewGoodToys() {
-        List<Toy> goodToys = toyRepository.getGoodToys();
         System.out.println("Lista de juguetes para niños buenos:");
-        for (Toy toy : goodToys) {
+        for (Toy toy : toyRepository.getGoodToys()) {
             System.out.println(toy);
         }
     }
 
-    // Просмотр игрушек для плохих детей
     public void viewBadToys() {
-        List<Toy> badToys = toyRepository.getBadToys();
         System.out.println("Lista de juguetes para niños malos:");
-        for (Toy toy : badToys) {
+        for (Toy toy : toyRepository.getBadToys()) {
             System.out.println(toy);
         }
     }
 
-    // Сохранение игрушек в CSV
     public void saveToysToCSV() {
-        System.out.println("Juguetes guardados en CSV.");
+        System.out.println("Guardando juguetes como CSV...");
+        // Логика для сохранения в CSV
     }
 
-    public Object viewToys() {
-        throw new UnsupportedOperationException("Unimplemented method 'viewToys'");
+    public Object getAllToys() {
+        throw new UnsupportedOperationException("Unimplemented method 'getAllToys'");
     }
 }

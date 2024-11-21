@@ -62,18 +62,29 @@ public class App {
     }
 
     private void addToySession(ToyController toyController, Scanner scanner) {
+        System.out.print("Ingrese el nombre del juguete: ");
+        String name = scanner.nextLine();
+    
+        System.out.print("Ingrese la descripción del juguete: ");
+        String description = scanner.nextLine();
+    
+        System.out.print("Ingrese la edad del niño (en años): ");
+        int age = getValidatedInput(scanner);
+    
         System.out.println("Para niño ...:");
         System.out.println("1. Bueno");
         System.out.println("2. Malo");
         System.out.print("Seleccione una opción: ");
         int toyType = getValidatedInput(scanner);
-
+    
         switch (toyType) {
-            case 1 -> toyController.addToyForGood();
-            case 2 -> toyController.addToyForBad();
+            case 1 -> toyController.addToyForGood(name, description, age);
+            case 2 -> toyController.addToyForBad(name, description, age);
             default -> System.out.println("Opción no válida.");
         }
     }
+    
+    
 
     private void santaSession(ToyController toyController, Scanner scanner) {
         while (true) {
