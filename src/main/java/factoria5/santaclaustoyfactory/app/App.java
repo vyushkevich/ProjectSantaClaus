@@ -11,29 +11,33 @@ public class App {
         try (Scanner scanner = new Scanner(System.in)) {
             ToyRepository toyRepository = new ToyRepository();
             ToyController toyController = new ToyController(toyRepository);  // Передаем репозиторий
-            App app = new App();
 
             while (true) {
-                app.printMainMenu();
-                int sessionType = app.getValidatedInput(scanner);
+                printMainMenu();
+                int sessionType = getValidatedInput(scanner);
 
                 switch (sessionType) {
-                    case 1 -> app.elfoSession(toyController, scanner);
-                    case 2 -> app.santaSession(toyController, scanner);
+                    case 1 -> elfoSession(toyController, scanner);
+                    case 2 -> santaSession(toyController, scanner);
+                    case 0 -> {
+                        System.out.println("Programa finalizado. ¡Hasta pronto!");
+                        return; // Завершаем программу
+                    }
                     default -> System.out.println("Opción no válida. Inténtelo de nuevo.");
                 }
             }
         }
     }
 
-    private void printMainMenu() {
+    private static void printMainMenu() {
         System.out.println("Iniciar sesión de trabajo como:");
         System.out.println("1. Elfo");
         System.out.println("2. Santa Claus");
+        System.out.println("0. Salir del programa");
         System.out.print("Seleccione una opción: ");
     }
 
-    private void elfoSession(ToyController toyController, Scanner scanner) {
+    private static void elfoSession(ToyController toyController, Scanner scanner) {
         while (true) {
             printElfoMenu();
             int option = getValidatedInput(scanner);
@@ -51,7 +55,7 @@ public class App {
         }
     }
 
-    private void printElfoMenu() {
+    private static void printElfoMenu() {
         System.out.println("-----------");
         System.out.println("Gestor de juguetes (Tipo de sesión: Elfo)");
         System.out.println("1. Añadir juguete");
@@ -61,7 +65,7 @@ public class App {
         System.out.print("Seleccione una opción: ");
     }
 
-    private void addToySession(ToyController toyController, Scanner scanner) {
+    private static void addToySession(ToyController toyController, Scanner scanner) {
         System.out.print("Ingrese el nombre del juguete: ");
         String name = scanner.nextLine();
     
@@ -83,10 +87,8 @@ public class App {
             default -> System.out.println("Opción no válida.");
         }
     }
-    
-    
 
-    private void santaSession(ToyController toyController, Scanner scanner) {
+    private static void santaSession(ToyController toyController, Scanner scanner) {
         while (true) {
             printSantaMenu();
             int option = getValidatedInput(scanner);
@@ -104,7 +106,7 @@ public class App {
         }
     }
 
-    private void printSantaMenu() {
+    private static void printSantaMenu() {
         System.out.println("-----------");
         System.out.println("Gestor de juguetes (Tipo de sesión: Santa)");
         System.out.println("1. Ver lista de juguetes niños buenos");
@@ -114,13 +116,13 @@ public class App {
         System.out.print("Seleccione una opción: ");
     }
 
-    private int getValidatedInput(Scanner scanner) {
+    private static int getValidatedInput(Scanner scanner) {
         while (!scanner.hasNextInt()) {
             System.out.println("Por favor, ingrese un número válido.");
-            scanner.next();
+            scanner.next(); // Сбрасываем неправильный ввод
         }
         int input = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // Считываем остаточный символ новой строки
         return input;
     }
 }
