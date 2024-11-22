@@ -145,4 +145,8 @@ public class ToyController {
         System.err.println("Error saving to CSV: " + e.getMessage());
     }
 }
+
+    public void deleteToy(String string) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteToy'");
+    }
 }

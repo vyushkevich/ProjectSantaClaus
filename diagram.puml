@@ -1,0 +1,44 @@
+@startuml SantaProject
+class Toy {
+    - title: String
+    - brand: String
+    - recommendedAge: String
+    - category: String
+    - content: String
+    + addToy(): void
+    + removeToy(): void
+}
+
+class ToyRepository {
+    - toys: List<Toy>
+    + addToy(toy: Toy): void
+    + removeToy(toyId: String): void
+    + getAllToys(): List<Toy>
+    + getToysForGoodKids(): List<Toy>
+    + getToysForBadKids(): List<Toy>
+    + saveToCSV(): void
+}
+
+class ToyController {
+    - repository: ToyRepository
+    + addToy(): void
+    + removeToy(): void
+    + viewToys(): void
+    + saveToys(): void
+}
+
+class App {
+    + start(): void
+    + manageSession(): void
+}
+
+class Session {
+    - user: String
+    + startSession(user: String): void
+    + endSession(): void
+}
+
+ToyRepository "1" -- "0..*" Toy : stores >
+ToyController "1" -- "1" ToyRepository : uses >
+App "1" -- "1" Session : manages >
+@enduml
