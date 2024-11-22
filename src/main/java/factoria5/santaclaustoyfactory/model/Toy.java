@@ -1,44 +1,40 @@
 package factoria5.santaclaustoyfactory.model;
 
-public class Toy {
+public abstract class Toy {
+    private String id;
     private String name;
-    private String description;
-    private String type; // "Bueno" или "Malo"
-    private int age; // Возраст ребёнка
+    private String category;
 
-    // Конструктор с возрастом
-    public Toy(String name, String description, String type, int age) {
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.age = age;
+    public Toy() {
     }
 
-    // Геттеры
+    public Toy(String id, String name, String category) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    // Метод для текстового представления объекта
-    @Override
-    public String toString() {
-        return "Toy{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type='" + type + '\'' +
-                ", age=" + age +
-                '}';
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
