@@ -1,20 +1,12 @@
-// package factoria5.santaclaustoyfactory;
+package factoria5.santaclaustoyfactory;
 
-// public class Toy {
-//     private String type;
+//import org.junit.jupiter.api.Test;
 
-//     public Toy(String type) {
-//         this.type = type;
-//     }
 
-//     public String getType() {
-//         return type;
-//     }
+class AppTest {
 
-//     @Override
-//     public String toString() {
-//         return "Toy{" +
-//                 "type='" + type + '\'' +
-//                 '}';
-//     }
-// }
+    // @Test
+    // void testMain() {
+    //     App.main(new String[]{});
+    // }
+}

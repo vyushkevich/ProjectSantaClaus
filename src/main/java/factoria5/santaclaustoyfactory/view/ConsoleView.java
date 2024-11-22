@@ -1,5 +1,9 @@
 package factoria5.santaclaustoyfactory.view;
 
+import java.util.List;
+
+import factoria5.santaclaustoyfactory.model.Toy;
+
 public class ConsoleView {
 
     public void displayMainMenu() {
@@ -23,5 +27,13 @@ public class ConsoleView {
         System.out.println("2. See list of BAD children's toys");
         System.out.println("3. Save list of all toys (.csv)");
         System.out.println("4. Sign out");
+    }
+
+    public void displayToyList(List<Toy> toyList) {
+        throw new UnsupportedOperationException("Unimplemented method 'displayToyList'");
+    }
+
+    public void showMessage(String string) {
+        throw new UnsupportedOperationException("Unimplemented method 'showMessage'");
     }
 }

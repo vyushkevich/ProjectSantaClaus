@@ -1,0 +1,15 @@
+@startuml SantaProjectSe 
+actor Elf
+participant App
+participant ToyController
+participant ToyRepository
+participant Toy
+
+Elf -> App : start()
+App -> ToyController : manageSession()
+ToyController -> Toy : addToy()
+Toy -> ToyRepository : saveToy()
+ToyRepository -> Toy : addToy()
+ToyRepository -> ToyController : toyAdded()
+ToyController -> App : return()
+@enduml
