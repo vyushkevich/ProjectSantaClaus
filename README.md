@@ -27,5 +27,5 @@ Then use the command "git clone https://github.com/vyushkevich/ProjectSantaClaus
 
 # Authors
 Volodymyr Yushkevich
-[![GitHub]
+
 (https://github.com/vyushkevich)
