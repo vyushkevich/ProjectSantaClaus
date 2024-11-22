@@ -21,7 +21,7 @@ Then use the command "git clone https://github.com/vyushkevich/ProjectSantaClaus
 <img src="src/images/coverage.png">
 <img src="src/images/showcase.png">
 
-# Giagrams
+# Diagrams
 <img src="src/images/SantaProject.png">
 <img src="src/images/SantaProjectSe.png">
 
